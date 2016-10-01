@@ -25,13 +25,20 @@ public class SeleniumTest {
     @Test
     public void canOpenTechPage() {
         System.out.println("Open home page");
-        driver.get(HomePage.getUrl());
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+
         System.out.println("Click menu");
-        HomePage.buttonMenu(driver).click();
+        homePage.buttonMenu().click();
+
         System.out.println("Click Tech");
-        HomePage.buttonTechInMenu(driver).click();
+        homePage.buttonTechInMenu().click();
+
         System.out.println("Confirm the title");
-        assertEquals(Tech.titleTech(driver).getText(), "Tech");
+        Tech tech = new Tech(driver);
+        assertEquals(tech.titleTech().getText(), "Tech");
+        
+        tech.close();
     }
 
     @AfterClass
